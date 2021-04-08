@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/projects', function (){
+    //persist
+    $projects = App\Project::all();
+    return view('projects.index', compact('projects'));
+});
+
+Route::post('/projects', function (){
+    //persist
+    App\Project::create(request(['title', 'description']));
+});
