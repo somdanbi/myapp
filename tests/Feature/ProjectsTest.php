@@ -13,6 +13,13 @@ class ProjectsTest extends TestCase
     use WithFaker, RefreshDatabase;
 
     /** @test */
+    public function only_authenticated_user_can_create_projects()
+    {
+        $attributes = factory('App\Project')->raw([ 'owner_id' => null ]);
+        $this->post('/projects', $attributes)->assertRedirect('login');
+    }
+
+    /** @test */
     function a_user_can_create_a_project()
     {
         $this->withoutExceptionHandling();
@@ -50,12 +57,6 @@ class ProjectsTest extends TestCase
         $this->post('/projects', $attributes)->assertSessionHasErrors('description');
     }
 
-    /** @test */
-    public function a_project_requires_an_owner()
-    {
-//        $this->withoutExceptionHandling();
-        $attributes = factory('App\Project')->raw([ 'owner_id' => null ]);
-        $this->post('/projects', $attributes)->assertSessionMissing('owner_id');
-    }
+
 
 }
