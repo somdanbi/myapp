@@ -12,7 +12,7 @@ class ProjectsTest extends TestCase
 
     use WithFaker, RefreshDatabase;
 
-        /** @test */
+    /** @test */
     function a_user_can_create_a_project()
     {
         $this->withoutExceptionHandling();
@@ -53,9 +53,9 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_an_owner()
     {
-
-        $attributes = factory('App\Project')->raw([ 'owner_id' => null ] );
-        $this->post('/projects', $attributes)->assertSessionHasErrors('owner_id');
+//        $this->withoutExceptionHandling();
+        $attributes = factory('App\Project')->raw([ 'owner_id' => null ]);
+        $this->post('/projects', $attributes)->assertSessionMissing('owner_id');
     }
 
 }
