@@ -33,7 +33,7 @@ class ProjectsController extends Controller
             'owner_id'    => 'required',
         ]);
 
-        dd($attributes);
+
 
         Project::create($attributes);
         return redirect('/projects');
