@@ -23,9 +23,17 @@ class ProjectsTest extends TestCase
         ];
 
         $this->post('/projects', $attributes)->assertRedirect('/projects');
-//        $this->assertDatabaseHas('projects', $attributes);
-//        $this->get('/projects')->assertSee($attributes['title']);
+    }
 
+    /** @test */
+    function a_project_requires_a_title()
+    {
+        $this->post('/projects',[])->assertSessionHasErrors('title');
+    }
+    /** @test */
+    function a_project_requires_a_description()
+    {
+        $this->post('/projects',[])->assertSessionHasErrors('description');
     }
 
 }
