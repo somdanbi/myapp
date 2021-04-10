@@ -24,7 +24,7 @@ class ProjectsTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(factory('App\User')->create());
-        
+
         $attributes = [
             'title'       => $this->faker->sentence,
             'description' => $this->faker->paragraph,
