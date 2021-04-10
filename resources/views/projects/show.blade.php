@@ -8,20 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Birdboad</h1>
-<ul>
-    @forelse($projects as $project)
-
-
-        <li>
-            <a href="{{$project->path()}}">
-                {{$project->title}}
-            </a>
-        </li>
-    @empty
-        <li>No projects yet</li>
-    @endforelse
-
-</ul>
+    <h1>Birdboad</h1>
+    <ul>
+        {{ $project->title }}
+        {{ $project->description }}
+    </ul>
 </body>
 </html>

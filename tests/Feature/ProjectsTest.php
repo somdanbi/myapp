@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -11,9 +10,9 @@ use Tests\TestCase;
 class ProjectsTest extends TestCase
 {
 
-    use DatabaseMigrations, RefreshDatabase, WithFaker;
+    use WithFaker, RefreshDatabase;
 
-    /** @test */
+        /** @test */
     function a_user_can_create_a_project()
     {
         $this->withoutExceptionHandling();
@@ -23,6 +22,18 @@ class ProjectsTest extends TestCase
         ];
 
         $this->post('/projects', $attributes)->assertRedirect('/projects');
+    }
+
+    /** @test */
+    public function a_user_can_view_a_project()
+    {
+        $this->withoutExceptionHandling();
+        $project = factory('App\Project')->create();
+
+        $this->get($project->path())
+            ->assertSee($project->title)
+            ->assertSee($project->description);
+
     }
 
     /** @test */

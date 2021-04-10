@@ -36,15 +36,16 @@ class ProjectsController extends Controller
         return redirect('/projects');
     }
 
+
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+//        $project = Project::findOrFail(\request('project'));
+        return view('projects.show', compact('project'));
+
     }
 
     /**
