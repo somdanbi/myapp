@@ -19,6 +19,11 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
+    public function create()
+    {
+        return view('projects.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
