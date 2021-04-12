@@ -2,8 +2,8 @@
 
 @section('content')
 
-        <div class="">
-            <h1>Birdboad</h1>
+        <div class="flex items-center">
+            <h1 class="mr-auto mb-3">Birdboad</h1>
             <a href="/projects/create" class="btn btn-secondary">Create</a>
         </div>
 
